@@ -40,7 +40,7 @@ func certProviderByCertMode(mode, dir, hostname string) (certProvider, error) {
 			HostPolicy: autocert.HostWhitelist(hostname),
 			Cache:      autocert.DirCache(dir),
 		}
-		if hostname == "derp.tailscale.com" {
+		if  == "derp.tailscale.com" {
 			certManager.HostPolicy = prodAutocertHostPolicy
 			certManager.Email = "security@tailscale.com"
 		}
@@ -88,9 +88,9 @@ func (m *manualCertManager) TLSConfig() *tls.Config {
 }
 
 func (m *manualCertManager) getCertificate(hi *tls.ClientHelloInfo) (*tls.Certificate, error) {
-	if hi.ServerName != m.hostname {
-		return nil, fmt.Errorf("cert mismatch with hostname: %q", hi.ServerName)
-	}
+	//if hi.ServerName != m.hostname {
+	//	return nil, fmt.Errorf("cert mismatch with hostname: %q", hi.ServerName)
+	//}
 
 	// Return a shallow copy of the cert so the caller can append to its
 	// Certificate field.
